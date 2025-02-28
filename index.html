@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Network Visualization</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+</head>
+<body class="bg-light">
+    <div class="container-fluid">
+        <canvas id="networkCanvas"></canvas>
+        <div class="settings-box mt-4 p-3 border rounded bg-white">
+            <h4 class="text-center">Neural Network Visualization</h4>
+            <h5>Settings</h5>
+            <div class="form-group">
+                <label for="numNodes">Number of Nodes:</label>
+                <input type="range" class="form-control-range" id="numNodes" min="100" max="1000" value="500">
+            </div>
+            <div class="form-group">
+                <label for="connectionThreshold">Connection Threshold:</label>
+                <input type="range" class="form-control-range" id="connectionThreshold" min="10" max="200" value="80">
+            </div>
+            <div class="form-group">
+                <label for="signalSpeed">Signal Speed:</label>
+                <input type="range" class="form-control-range" id="signalSpeed" min="0.01" max="0.2" step="0.01" value="0.08">
+            </div>
+            <div class="form-group">
+                <label for="activeDuration">Active Duration (ms):</label>
+                <input type="number" class="form-control" id="activeDuration" min="100" max="5000" value="1500">
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="darkMode">
+                    <label class="form-check-label" for="darkMode">Enable Dark Mode</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="horizontalLayout">
+                    <label class="form-check-label" for="horizontalLayout">Horizontal Layout</label>
+                </div>
+            </div>
+            <button id="resetButton" class="btn btn-primary">Reset Network</button>
+        </div>
+    </div>
+    <script src="js/synapticnet.js"></script>
+    <script>
+        // Hook up event listeners to update parameters and reset the simulation
+        document.getElementById('numNodes').addEventListener('input', updateSimulationParameters);
+        document.getElementById('connectionThreshold').addEventListener('input', updateSimulationParameters);
+        document.getElementById('signalSpeed').addEventListener('input', updateSimulationParameters);
+        document.getElementById('activeDuration').addEventListener('input', updateSimulationParameters);
+
+        document.getElementById('darkMode').addEventListener('change', function() {
+            document.body.classList.toggle('dark-mode');
+            updateThemeColors();
+            resetNetwork();
+        });
+
+        document.getElementById('horizontalLayout').addEventListener('change', function() {
+            document.querySelector('.settings-box').classList.toggle('horizontal', this.checked);
+        });
+
+        document.getElementById('resetButton').addEventListener('click', function() {
+            updateSimulationParameters();
+        });
+    </script>
+</body>
+</html>

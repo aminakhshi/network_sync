@@ -1,0 +1,48 @@
+/* Custom styles for the neural network visualization project */
+
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+#networkCanvas {
+    border: 1px solid #ccc;
+    display: block;
+    margin: 0 auto;
+}
+
+.settings-box {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    z-index: 1000;
+}
+
+.settings-box.horizontal {
+    position: static;
+    margin: 20px auto 0;
+}
+
+.settings-box h4 {
+    margin-bottom: 15px;
+}
+
+.settings-box .form-group {
+    margin-bottom: 10px;
+}
+
+.settings-box .btn {
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .settings-box {
+        width: 90%;
+        top: 10px;
+        right: 5%;
+    }
+}
